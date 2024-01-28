@@ -1,3 +1,5 @@
+import 'package:cours_flutter/screens/scan_screen.dart';
+import 'package:cours_flutter/screens/setting_screen.dart';
 import 'package:cours_flutter/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -46,8 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
             leading: Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
               child: IconButton(
-                onPressed: () {
-                  print("object");
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                  const settingScreen()));
                 },
                 icon: const Icon(
                   Icons.settings,
@@ -188,15 +191,21 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   cardWidget(){
-    return Container(
-      height: 200,
-      margin: EdgeInsets.symmetric(horizontal: 50),
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>
+        const ScanScreen()));
+      },
+
+    child: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 40),
       decoration: BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.circular(25),
         image: DecorationImage(
             image: const AssetImage("assets/images/bg_card.png"),fit: BoxFit.cover,colorFilter: ColorFilter.mode(Colors.grey.shade300.withOpacity(0.3), BlendMode.srcIn)),
       ),
+      height: 200,
       width: MediaQuery.of(context).size.width,
       child: Container(
           margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 85),
@@ -204,6 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(25)
           ),
+
           child: Column(
             children: [
               Image.asset("assets/images/qr_img.png",
@@ -222,8 +232,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           )
       ),
+    ),
     );
   }
 }
+
+
 
 
